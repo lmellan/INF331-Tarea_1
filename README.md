@@ -19,7 +19,7 @@ Para instalar y ejecutar esta aplicación en tu entorno local, sigue estos pasos
 
    ```bash
    git clone https://github.com/lmellan/Tarea_1-INF331.git
-   cd Tarea_1-INF331
+   cd Tarea_1-INF331\\gestion-productos-backend
    ```
 
 2. **Instala las dependencias**:
