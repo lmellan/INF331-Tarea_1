@@ -34,7 +34,7 @@ Para instalar y ejecutar esta aplicación en tu entorno local, sigue estos pasos
    Luego, instala las dependencias del proyecto con el siguiente comando:
 
    ```bash
-   cd Tarea_1-INF331\\gestion-productos-backend
+   cd Tarea_1-INF331\gestion-productos-backend
    mvn clean install
    ```
 
