@@ -7,7 +7,7 @@ Este proyecto es una aplicación de software desarrollada por un equipo de 2 per
 
 ## Wiki
 
-Puede acceder a la Wiki del proyecto mediante el siguiente [enlace](https://github.com/lmellan/Tarea_1-INF331/wiki)  
+Puede acceder a la Wiki del proyecto mediante el siguiente [enlace](https://github.com/lmellan/Tarea_1-INF331/wiki).  
 
 ## Instalación
 
