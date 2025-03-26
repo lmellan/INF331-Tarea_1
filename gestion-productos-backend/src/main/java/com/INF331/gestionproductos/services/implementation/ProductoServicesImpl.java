@@ -32,7 +32,7 @@ public class ProductoServicesImpl implements ProductoServices {
 
     @Override
     public Producto updateProducto(Long id, Producto producto) {
-        if(productoRepository.existsById(id)){
+        if (productoRepository.existsById(id)) {
             return productoRepository.save(producto);
         }
         return null;
@@ -42,4 +42,17 @@ public class ProductoServicesImpl implements ProductoServices {
     public void deleteProducto(Long id) {
         productoRepository.deleteById(id);
     }
+
+    @Override
+    public List<Producto> buscarPorNombre(String nombre) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'buscarPorNombre'");
+    }
+
+    @Override
+    public List<Producto> buscarPorCategoria(String categoria) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'buscarPorCategoria'");
+    }
+
 }
