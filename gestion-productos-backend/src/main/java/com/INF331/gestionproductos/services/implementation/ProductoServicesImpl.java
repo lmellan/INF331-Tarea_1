@@ -45,14 +45,11 @@ public class ProductoServicesImpl implements ProductoServices {
 
     @Override
     public List<Producto> buscarPorNombre(String nombre) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarPorNombre'");
+        return productoRepository.findByNombreContainingIgnoreCase(nombre);
     }
 
     @Override
     public List<Producto> buscarPorCategoria(String categoria) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarPorCategoria'");
+        return productoRepository.findByCategoriaContainingIgnoreCase(categoria);
     }
-
 }
