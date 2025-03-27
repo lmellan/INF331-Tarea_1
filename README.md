@@ -70,7 +70,7 @@ Luego, instala las dependencias del proyecto con:
 
 ```bash
 cd Tarea_1-INF331/gestion-productos-backend
-mvn clean install
+mvn clean install -DskipTests -DinteractiveMode=false
 ```
 
 Este comando descargará todas las dependencias necesarias y preparará el proyecto para su ejecución.
