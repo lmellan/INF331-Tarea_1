@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
     <Appenders>
-        <!-- Muestra en consola -->
+        <!-- Muestra en consola solo WARN y ERROR, sin fecha -->
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{HH:mm:ss} [%p] %m%n"/>
+            <ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="[%p] %m%n"/>
         </Console>
-        <!-- Archivo de logs -->
+
+        <!-- Archivo de logs (guarda todo) -->
         <File name="FileLogger" fileName="logs/app.log">
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%p] %c - %m%n"/>
         </File>
     </Appenders>
 
     <Loggers>
-        <Root level="info">
+        <Root level="INFO">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="FileLogger"/>
         </Root>
