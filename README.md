@@ -144,6 +144,7 @@ Una vez que hayas configurado correctamente la base de datos y las dependencias,
 - **Iniciar sesión**: Asegúrate de tener tu cuenta creada antes de intentar iniciar sesión. Si la contraseña es incorrecta o el nombre de usuario no existe, el sistema te notificará que el inicio de sesión ha fallado.
 - **Flujo de trabajo**: Puedes interactuar con el inventario de productos según las opciones del menú. En todo momento puedes regresar al inicio o salir del sistema.
 
+
 ### 5. Ejecución de Pruebas
 
 Este proyecto incluye pruebas unitarias.
