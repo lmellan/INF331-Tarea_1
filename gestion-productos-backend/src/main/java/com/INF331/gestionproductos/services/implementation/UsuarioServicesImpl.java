@@ -27,7 +27,7 @@ public class UsuarioServicesImpl implements UsuarioServices {
         if (usuarioRepository.existsById(id)) {
             return usuarioRepository.save(usuario);
         }
-        return null; 
+        return null;
     }
 
     @Override
@@ -36,11 +36,14 @@ public class UsuarioServicesImpl implements UsuarioServices {
             usuarioRepository.deleteById(id);
         }
     }
-    
+
     @Override
     public Optional<Usuario> buscarPorNombre(String categoria) {
         return usuarioRepository.findByNombreContainingIgnoreCase(categoria);
     }
 
+    public void setUsuarioRepository(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
+    }
 
 }

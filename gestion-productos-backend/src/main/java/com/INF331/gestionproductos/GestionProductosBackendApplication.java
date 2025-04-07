@@ -14,6 +14,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
+import java.text.Normalizer;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -80,12 +81,14 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
     }
 
     private boolean iniciarSesion(Scanner scanner) {
+
         logger.info("Intento de inicio de sesion");
         System.out.println("\n======= LOGIN ========\n");
 
         try {
             System.out.print("Nombre de usuario: ");
-            String nombre = scanner.nextLine().trim();
+            //String nombre = scanner.nextLine().trim();
+            String nombre = normalizarTexto(scanner.nextLine());
 
             if (nombre.isEmpty()) {
                 System.out.println("\n");
@@ -118,6 +121,7 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
         } catch (Exception e) {
             logger.error("Error durante el inicio de sesion: {}", e.getMessage(), e);
             System.out.println("\nPor favor, intente nuevamente.");
+
             return false;
         }
     }
@@ -129,7 +133,8 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
 
         try {
             System.out.print("Ingrese su nombre de usuario: ");
-            String nombre = scanner.nextLine().trim();
+            //String nombre = scanner.nextLine().trim();
+            String nombre = normalizarTexto(scanner.nextLine());
 
             if (nombre.isEmpty()) {
                 logger.warn("Intento de registro fallido: Nombre de usuario vacio.");
@@ -144,6 +149,7 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
 
             System.out.print("Ingrese su contraseña: ");
             String contraseña = scanner.nextLine();
+
 
             if (contraseña.isEmpty()) {
                 System.out.println("La contraseña no puede estar vacía.");
@@ -242,7 +248,8 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
 
         try {
             System.out.println("Ingrese el nombre del producto:");
-            String nombre = scanner.nextLine();
+            //String nombre = scanner.nextLine();
+            String nombre = normalizarTexto(scanner.nextLine());
             System.out.println("Ingrese la descripción del producto:");
             String descripcion = scanner.nextLine();
             System.out.println("Ingrese la cantidad:");
@@ -251,7 +258,8 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
             Long precio = scanner.nextLong();
             scanner.nextLine();
             System.out.println("Ingrese la categoría del producto:");
-            String categoria = scanner.nextLine();
+            //String categoria = scanner.nextLine();
+            String categoria = normalizarTexto(scanner.nextLine());
 
             Producto nuevoProducto = new Producto(null, nombre, descripcion, cantidad, precio, categoria);
             Producto productoGuardado = productoServices.createProducto(nuevoProducto);
@@ -270,6 +278,7 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
             logger.error("Error al agregar un nuevo producto", e);
             System.out.println("\nPor favor, intente nuevamente.\n");
         }
+
     }
 
 
@@ -283,7 +292,6 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
             Optional<Producto> productoOpt = productoServices.getProductoById(idActualizar);
 
             
-
             if (productoOpt.isEmpty()) {
                 System.out.println("\n");
                 logger.warn("Producto con ID {} no encontrado.", idActualizar);
@@ -295,6 +303,7 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
             System.out.println("Ingrese el nuevo nombre del producto (. para mantener igual):");
             String nuevoNombre = scanner.nextLine();
             if (nuevoNombre.equals(".")) nuevoNombre = productoExistente.getNombre();
+            else nuevoNombre = normalizarTexto(nuevoNombre);
 
             System.out.println("Ingrese la nueva descripción del producto (. para mantener igual):");
             String nuevaDescripcion = scanner.nextLine();
@@ -313,6 +322,7 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
             System.out.println("Ingrese la nueva categoría (. para mantener igual):");
             String nuevaCategoria = scanner.nextLine();
             if (nuevaCategoria.equals(".")) nuevaCategoria = productoExistente.getCategoria();
+            else nuevaCategoria = normalizarTexto(nuevaCategoria);
 
             Producto productoActualizar = new Producto(
                     idActualizar, 
@@ -334,6 +344,7 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
         } catch (Exception e) {
             logger.error("Error al actualizar el producto", e);
         }
+
     }
 
 
@@ -434,6 +445,7 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
     }
 
 
+
     private void generarReportes() {
         logger.info("Generando reportes de inventario.");
 
@@ -483,6 +495,12 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
         System.out.println("Precio: " + producto.getPrecio());
         System.out.println("Categoría: " + producto.getCategoria());
         System.out.println("---------------------------------------------------");
+    }
+
+    public static String normalizarTexto(String input) {
+        String sinAcentos = Normalizer.normalize(input, Normalizer.Form.NFD)
+                                      .replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+        return sinAcentos.toLowerCase();
     }
 }
 

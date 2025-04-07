@@ -14,14 +14,19 @@ Para instalar y ejecutar esta aplicación en tu entorno local, sigue estos pasos
 
 ### 1. Instalación de la Base de Datos
 
-Este proyecto utiliza **MySQL** como base de datos. Sigue estos pasos para configurarla localmente:
+Este proyecto utiliza **MySQL** como base de datos. Así se puede configurar localmente:
 
 - **Instala MySQL**: Si no lo tienes instalado, descárgalo desde [MySQL Community Server](https://dev.mysql.com/downloads/) e instálalo siguiendo las instrucciones correspondientes.
 
 - **Inicia MySQL**: Asegúrate de que el servicio de MySQL esté corriendo. Puedes iniciarlo con:
-  
+
+linux:
   ```bash
   sudo service mysql start
+  ```
+windows:
+  ```bash
+  mysql -u root -p
   ```
   
 - **Crea una base de datos**: Abre MySQL desde la terminal o una herramienta como MySQL Workbench y ejecuta:
@@ -64,7 +69,7 @@ Asegúrate de tener **Maven** instalado. Verifica su instalación ejecutando:
 mvn -v
 ```
 
-Si no lo tienes, descárgalo desde [aquí](https://maven.apache.org/download.cgi) e instálalo siguiendo las instrucciones.
+Si no lo tienes, descárgalo desde [aquí](https://maven.apache.org/download.cgi) e instálalo las respectivas instrucciones.
 
 Luego, instala las dependencias del proyecto con:
 
@@ -138,6 +143,19 @@ Una vez que hayas configurado correctamente la base de datos y las dependencias,
 
 - **Iniciar sesión**: Asegúrate de tener tu cuenta creada antes de intentar iniciar sesión. Si la contraseña es incorrecta o el nombre de usuario no existe, el sistema te notificará que el inicio de sesión ha fallado.
 - **Flujo de trabajo**: Puedes interactuar con el inventario de productos según las opciones del menú. En todo momento puedes regresar al inicio o salir del sistema.
+
+
+### 5. Ejecución de Pruebas
+
+Este proyecto incluye pruebas unitarias.
+
+**Ejecutar los tests:**
+```bash
+mvn test
+```
+**Herramientas utilizadas:**
+- *JUnit5* para pruebas unitarias.
+- *Mockito* para pruebas con mocks.
 
 ## Cómo contribuir
 
@@ -221,5 +239,4 @@ Si deseas contribuir al proyecto, sigue estos pasos utilizando **GitFlow** de pa
 ## Licencia
 
 Este proyecto está bajo la **MIT License** - ver el archivo [LICENSE](https://github.com/lmellan/Tarea_1-INF331/blob/main/LICENSE) para más detalles.
-
 
