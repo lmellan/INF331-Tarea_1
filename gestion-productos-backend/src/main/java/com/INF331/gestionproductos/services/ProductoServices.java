@@ -10,9 +10,13 @@ public interface ProductoServices {
 
     Optional<Producto> getProductoById(Long id);
 
-    Producto createProducto (Producto producto);
+    Producto createProducto(Producto producto);
 
     Producto updateProducto(Long id, Producto producto);
 
     void deleteProducto(Long id);
+
+    List<Producto> buscarPorNombre(String nombre);
+
+    List<Producto> buscarPorCategoria(String categoria);
 }
