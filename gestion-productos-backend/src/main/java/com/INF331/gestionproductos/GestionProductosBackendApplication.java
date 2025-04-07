@@ -14,6 +14,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
+import java.text.Normalizer;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -78,7 +79,7 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
 		System.out.println("\n===== LOGIN =====\n");
 
         System.out.print("Nombre de usuario: ");
-        String nombre = scanner.nextLine();
+        String nombre = normalizarTexto(scanner.nextLine());
         System.out.print("Contraseña: ");
         String contraseña = scanner.nextLine();
 
@@ -97,7 +98,7 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
 		System.out.println("\n===== REGISTRO =====\n");
 
         System.out.print("Ingrese su nombre de usuario: ");
-        String nombre = scanner.nextLine();
+        String nombre = normalizarTexto(scanner.nextLine());
 		if (usuarioServices.buscarPorNombre(nombre).isPresent()) {
 			System.out.println("Error: El nombre de usuario ya está en uso. Intente con otro.");
 			return;
@@ -170,7 +171,7 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
 
     private void agregarNuevoProducto(Scanner scanner) {
         System.out.println("Ingrese el nombre del producto:");
-        String nombre = scanner.nextLine();
+        String nombre = normalizarTexto(scanner.nextLine());
         System.out.println("Ingrese la descripción del producto:");
         String descripcion = scanner.nextLine();
         System.out.println("Ingrese la cantidad:");
@@ -179,7 +180,7 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
         Long precio = scanner.nextLong();
         scanner.nextLine();
         System.out.println("Ingrese la categoría del producto:");
-        String categoria = scanner.nextLine();
+        String categoria = normalizarTexto(scanner.nextLine());
 
         Producto nuevoProducto = new Producto(null, nombre, descripcion, cantidad, precio, categoria);
         Producto productoGuardado = productoServices.createProducto(nuevoProducto);
@@ -204,6 +205,7 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
         System.out.println("Ingrese el nuevo nombre del producto (. para dejar igual):");
         String nuevoNombre = scanner.nextLine();
         if (nuevoNombre.equals(".")) nuevoNombre = productoExistente.getNombre();
+        else nuevoNombre = normalizarTexto(nuevoNombre);
 
         System.out.println("Ingrese la nueva descripción del producto (. para dejar igual):");
         String nuevaDescripcion = scanner.nextLine();
@@ -223,6 +225,7 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
         System.out.println("Ingrese la nueva categoría (. para dejar igual):");
         String nuevaCategoria = scanner.nextLine();
         if (nuevaCategoria.equals(".")) nuevaCategoria = productoExistente.getCategoria();
+        else nuevaCategoria = normalizarTexto(nuevaCategoria);
 
         Producto productoActualizar = new Producto(
 			idActualizar, 
@@ -289,7 +292,7 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
 
 		if (tipoBusqueda == 1) {
 			System.out.print("Ingrese el nombre del producto: ");
-			String nombreBusqueda = scanner.nextLine();
+            String nombreBusqueda = normalizarTexto(scanner.nextLine());
 			List<Producto> productosPorNombre = productoServices.buscarPorNombre(nombreBusqueda);
 			if (productosPorNombre.isEmpty()) {
 				System.out.println("No se encontraron productos con ese nombre.");
@@ -298,7 +301,7 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
 			}
 		} else if (tipoBusqueda == 2) {
 			System.out.print("Ingrese la categoría: ");
-			String categoriaBusqueda = scanner.nextLine();
+			String categoriaBusqueda = normalizarTexto(scanner.nextLine());
 			List<Producto> productosPorCategoria = productoServices.buscarPorCategoria(categoriaBusqueda);
 			if (productosPorCategoria.isEmpty()) {
 				System.out.println("No se encontraron productos con esa categoría.");
@@ -344,6 +347,12 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
         System.out.println("Precio: " + producto.getPrecio());
         System.out.println("Categoría: " + producto.getCategoria());
         System.out.println("---------------------------------------------------");
+    }
+
+    public static String normalizarTexto(String input) {
+        String sinAcentos = Normalizer.normalize(input, Normalizer.Form.NFD)
+                                      .replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+        return sinAcentos.toLowerCase();
     }
 }
 

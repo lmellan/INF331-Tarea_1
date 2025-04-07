@@ -63,3 +63,47 @@ java.lang.UnsupportedOperationException: Unimplemented method 'buscarPorCategori
 2025-03-26 13:47:04 [INFO] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-03-26 13:47:04 [INFO] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2025-03-26 13:47:04 [INFO] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-03-28 15:06:26 [INFO] com.INF331.gestionproductos.GestionProductosBackendApplication - Starting GestionProductosBackendApplication using Java 21.0.6 with PID 7408 (C:\Users\RIO\Tarea_1-INF331\gestion-productos-backend\target\classes started by RIO in C:\Users\RIO\Tarea_1-INF331)
+2025-03-28 15:06:26 [INFO] com.INF331.gestionproductos.GestionProductosBackendApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-28 15:06:27 [INFO] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-28 15:06:28 [INFO] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 123 ms. Found 2 JPA repository interfaces.
+2025-03-28 15:06:28 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-03-28 15:06:28 [INFO] org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-28 15:06:28 [INFO] org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2025-03-28 15:06:28 [INFO] org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-03-28 15:06:28 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-03-28 15:06:28 [INFO] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2492 ms
+2025-03-28 15:06:29 [INFO] org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-28 15:06:29 [INFO] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
+2025-03-28 15:06:29 [INFO] org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-03-28 15:06:29 [INFO] org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-28 15:06:29 [INFO] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-03-28 15:06:30 [INFO] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@120d6cbf
+2025-03-28 15:06:30 [INFO] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-03-28 15:06:30 [WARN] org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-03-28 15:06:30 [INFO] org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.41
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-28 15:06:32 [INFO] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-28 15:06:33 [INFO] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-28 15:06:33 [WARN] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-28 15:06:34 [WARN] org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 89f7868f-b24e-430e-b1e9-9726524e6906
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-03-28 15:06:34 [INFO] org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-03-28 15:06:34 [INFO] org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-03-28 15:06:34 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-03-28 15:06:34 [INFO] com.INF331.gestionproductos.GestionProductosBackendApplication - Started GestionProductosBackendApplication in 8.939 seconds (process running for 11.535)
+2025-03-28 15:07:20 [INFO] org.springframework.boot.web.embedded.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-28 15:07:20 [INFO] org.springframework.boot.web.embedded.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-03-28 15:07:20 [INFO] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-28 15:07:20 [INFO] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-03-28 15:07:20 [INFO] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

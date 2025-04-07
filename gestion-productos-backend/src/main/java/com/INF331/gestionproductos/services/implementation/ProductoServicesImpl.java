@@ -52,4 +52,9 @@ public class ProductoServicesImpl implements ProductoServices {
     public List<Producto> buscarPorCategoria(String categoria) {
         return productoRepository.findByCategoriaContainingIgnoreCase(categoria);
     }
+
+    public void setProductoRepository(ProductoRepository productoRepository) {
+        this.productoRepository = productoRepository;
+    }
+
 }
