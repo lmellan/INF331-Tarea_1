@@ -48,25 +48,34 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
         while (true) {
             System.out.println("\n===== BIENVENIDO =====\n");
             System.out.println("1. Crear cuenta");
-            System.out.println("2. Iniciar sesion");
+            System.out.println("2. Iniciar sesión");
             System.out.println("3. Salir");
-            System.out.print("\nSeleccione una opcion: ");
+            System.out.print("\nSeleccione una opción: ");
 
-            int opcion = scanner.nextInt();
-            scanner.nextLine();
-            
-            logger.info("Usuario seleccionó la opción: {}", opcion);
+            int opcion = -1;
+
+            try {
+                opcion = scanner.nextInt();
+                scanner.nextLine(); 
+                logger.info("Usuario seleccionó la opción: {}", opcion);
+            } catch (InputMismatchException e) {
+                System.out.println("\n");
+                logger.error("Entrada invalida en el menu de inicio.");
+                System.out.println("\nPor favor ingrese una entrada válida.\n");
+                scanner.nextLine(); 
+                continue; 
+            }
 
             System.out.print("\n");
 
             switch (opcion) {
+                case 1:
+                    registrarse(scanner);
+                    break;
                 case 2:
                     if (iniciarSesion(scanner)) {
                         mostrarMenuProductos(scanner);
                     }
-                    break;
-                case 1:
-                    registrarse(scanner);
                     break;
                 case 3:
                     System.out.println("Saliendo del sistema...\n");
@@ -74,11 +83,13 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
                     System.exit(0);
                     return;
                 default:
-                    System.out.println("Opción no válida, intente de nuevo.");
-                    logger.warn("Usuario ingresó una opción inválida: {}", opcion);
+                    System.out.println("\n");
+                    logger.warn("Opcion ingresada invalida: {}", opcion);
+                    System.out.println("\nPor favor ingrese un número válido.\n");
             }
         }
     }
+
 
     private boolean iniciarSesion(Scanner scanner) {
 
@@ -173,7 +184,7 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
     }
 
 
-
+/*
     private void mostrarMenuProductos(Scanner scanner) {
         logger.info("Mostrando menú de productos");
         while (true) {
@@ -225,6 +236,68 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
         }
     }
 
+*/
+
+private void mostrarMenuProductos(Scanner scanner) {
+    logger.info("Mostrando menú de productos");
+
+    while (true) {
+        System.out.println("\n===== MENÚ PRINCIPAL =====\n");
+        System.out.println("1. Ver todos los productos");
+        System.out.println("2. Agregar un nuevo producto");
+        System.out.println("3. Actualizar un producto");
+        System.out.println("4. Eliminar un producto");
+        System.out.println("5. Buscar/filtrar productos");
+        System.out.println("6. Ver reportes");
+        System.out.println("7. Volver");
+        System.out.print("\nSeleccione una opción: ");
+
+        int opcion = -1;
+
+        try {
+            opcion = scanner.nextInt();
+            scanner.nextLine(); 
+            logger.info("Usuario seleccionó la opción: {}", opcion);
+        } catch (InputMismatchException e) {
+            System.out.println("\n");
+            logger.error("Entrada invalida en el menu principal de productos.");
+            System.out.println("\nPor favor, ingrese un número válido.\n");
+            scanner.nextLine(); 
+            continue;
+        }
+
+        System.out.print("\n");
+
+        switch (opcion) {
+            case 1:
+                verTodosLosProductos();
+                break;
+            case 2:
+                agregarNuevoProducto(scanner);
+                break;
+            case 3:
+                actualizarProducto(scanner);
+                break;
+            case 4:
+                eliminarProducto(scanner);
+                break;
+            case 5:
+                buscarProductos(scanner);
+                break;
+            case 6:
+                generarReportes();
+                break;
+            case 7:
+                logger.info("Usuario regresando al inicio");
+                System.out.println("Regresando al inicio...");
+                mostrarMenuInicio(scanner);
+                return;
+            default:
+                logger.warn("Opcion ingresada invalida: {}", opcion);
+                System.out.println("\nPor favor, ingrese un número entre 1 y 7.");
+        }
+    }
+}
 
     private void verTodosLosProductos() {
         logger.info("Solicitando lista de todos los productos.");

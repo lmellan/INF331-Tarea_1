@@ -90,7 +90,7 @@ void iniciarSesion_credencialesCorrectas_deberiaRetornarTrue() {
 		ReflectionTestUtils.invokeMethod(app, "registrarse", scanner);
 
 		String salida = outContent.toString();
-		assertTrue(salida.contains("Intento de registro fallido: El nombre de usuario admin ya esta en uso."));
+		assertTrue(salida.contains("Intento de registro fallido: El nombre de usuario 'admin' ya esta en uso."));
 
 	}
 
