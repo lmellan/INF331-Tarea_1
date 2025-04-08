@@ -5941,3 +5941,24 @@ This generated password is for development use only. Your security configuration
 2025-04-02 11:25:52 [INFO] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-04-02 11:25:52 [INFO] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2025-04-02 11:25:52 [INFO] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-04-07 22:10:27 [INFO] com.INF331.gestionproductos.GestionProductosBackendApplication - Generando reportes de inventario.
+2025-04-07 22:10:27 [INFO] com.INF331.gestionproductos.GestionProductosBackendApplication - Se recuperaron 2 productos del inventario.
+2025-04-07 22:10:27 [INFO] com.INF331.gestionproductos.GestionProductosBackendApplication - Valor total del inventario calculado: $2000
+2025-04-07 22:10:27 [INFO] com.INF331.gestionproductos.GestionProductosBackendApplication - Se encontraron productos agotados en el inventario.
+2025-04-07 22:10:27 [INFO] com.INF331.gestionproductos.GestionProductosBackendApplication - Reporte de inventario generado con exito.
+2025-04-07 22:10:27 [INFO] com.INF331.gestionproductos.GestionProductosBackendApplication - Intento de inicio de sesion
+2025-04-07 22:10:27 [WARN] com.INF331.gestionproductos.GestionProductosBackendApplication - Intento de inicio de sesión fallido para el usuario: usuariotest
+2025-04-07 22:10:27 [INFO] com.INF331.gestionproductos.GestionProductosBackendApplication - Inicio del proceso de búsqueda de productos.
+2025-04-07 22:10:27 [INFO] com.INF331.gestionproductos.GestionProductosBackendApplication - 1 productos encontrados en la categoría: bebestibles
+2025-04-07 22:10:27 [INFO] com.INF331.gestionproductos.GestionProductosBackendApplication - Solicitando lista de todos los productos.
+2025-04-07 22:10:27 [INFO] com.INF331.gestionproductos.GestionProductosBackendApplication - No hay productos en el inventario.
+2025-04-07 22:10:27 [INFO] com.INF331.gestionproductos.GestionProductosBackendApplication - Inicio del proceso de búsqueda de productos.
+2025-04-07 22:10:27 [INFO] com.INF331.gestionproductos.GestionProductosBackendApplication - No se encontraron productos con el nombre: desaparecido
+2025-04-07 22:10:27 [INFO] com.INF331.gestionproductos.GestionProductosBackendApplication - Intento de inicio de sesion
+2025-04-07 22:10:27 [INFO] com.INF331.gestionproductos.GestionProductosBackendApplication - Inicio de sesion exitoso para el usuario: usuariotest
+2025-04-07 22:10:27 [INFO] com.INF331.gestionproductos.GestionProductosBackendApplication - Inicio del proceso de registro
+2025-04-07 22:10:28 [INFO] com.INF331.gestionproductos.GestionProductosBackendApplication - Usuario 'nuevousuario' registrado con éxito.
+2025-04-07 22:10:28 [INFO] com.INF331.gestionproductos.GestionProductosBackendApplication - Inicio del proceso de registro
+2025-04-07 22:10:28 [INFO] com.INF331.gestionproductos.GestionProductosBackendApplication - Intento de registro fallido: El nombre de usuario 'admin' ya esta en uso.
+2025-04-07 22:10:28 [INFO] com.INF331.gestionproductos.GestionProductosBackendApplication - Inicio del proceso de búsqueda de productos.
+2025-04-07 22:10:28 [INFO] com.INF331.gestionproductos.GestionProductosBackendApplication - 1 productos encontrados con el nombre: pan
