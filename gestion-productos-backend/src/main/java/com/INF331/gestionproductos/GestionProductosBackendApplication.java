@@ -48,25 +48,34 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
         while (true) {
             System.out.println("\n===== BIENVENIDO =====\n");
             System.out.println("1. Crear cuenta");
-            System.out.println("2. Iniciar sesion");
+            System.out.println("2. Iniciar sesión");
             System.out.println("3. Salir");
-            System.out.print("\nSeleccione una opcion: ");
+            System.out.print("\nSeleccione una opción: ");
 
-            int opcion = scanner.nextInt();
-            scanner.nextLine();
-            
-            logger.info("Usuario seleccionó la opción: {}", opcion);
+            int opcion = -1;
+
+            try {
+                opcion = scanner.nextInt();
+                scanner.nextLine(); 
+                logger.info("Usuario seleccionó la opción: {}", opcion);
+            } catch (InputMismatchException e) {
+                System.out.println("\n");
+                logger.error("Entrada invalida en el menu de inicio.");
+                System.out.println("\nPor favor ingrese una entrada válida.\n");
+                scanner.nextLine(); 
+                continue; 
+            }
 
             System.out.print("\n");
 
             switch (opcion) {
+                case 1:
+                    registrarse(scanner);
+                    break;
                 case 2:
                     if (iniciarSesion(scanner)) {
                         mostrarMenuProductos(scanner);
                     }
-                    break;
-                case 1:
-                    registrarse(scanner);
                     break;
                 case 3:
                     System.out.println("Saliendo del sistema...\n");
@@ -74,11 +83,13 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
                     System.exit(0);
                     return;
                 default:
-                    System.out.println("Opción no válida, intente de nuevo.");
-                    logger.warn("Usuario ingresó una opción inválida: {}", opcion);
+                    System.out.println("\n");
+                    logger.warn("Opcion ingresada invalida: {}", opcion);
+                    System.out.println("\nPor favor ingrese un número válido.\n");
             }
         }
     }
+
 
     private boolean iniciarSesion(Scanner scanner) {
 
@@ -143,7 +154,8 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
 
             if (usuarioServices.buscarPorNombre(nombre).isPresent()) {
                 System.out.println("\n");
-                logger.warn("Intento de registro fallido: El nombre de usuario '{}' ya esta en uso.", nombre);
+                logger.info("Intento de registro fallido: El nombre de usuario '{}' ya esta en uso.", nombre);
+                System.out.println("Intento de registro fallido: El nombre de usuario '" + nombre + "' ya esta en uso."); 
                 return;
             }
 
@@ -172,7 +184,7 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
     }
 
 
-
+/*
     private void mostrarMenuProductos(Scanner scanner) {
         logger.info("Mostrando menú de productos");
         while (true) {
@@ -224,6 +236,68 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
         }
     }
 
+*/
+
+private void mostrarMenuProductos(Scanner scanner) {
+    logger.info("Mostrando menú de productos");
+
+    while (true) {
+        System.out.println("\n===== MENÚ PRINCIPAL =====\n");
+        System.out.println("1. Ver todos los productos");
+        System.out.println("2. Agregar un nuevo producto");
+        System.out.println("3. Actualizar un producto");
+        System.out.println("4. Eliminar un producto");
+        System.out.println("5. Buscar/filtrar productos");
+        System.out.println("6. Ver reportes");
+        System.out.println("7. Volver");
+        System.out.print("\nSeleccione una opción: ");
+
+        int opcion = -1;
+
+        try {
+            opcion = scanner.nextInt();
+            scanner.nextLine(); 
+            logger.info("Usuario seleccionó la opción: {}", opcion);
+        } catch (InputMismatchException e) {
+            System.out.println("\n");
+            logger.error("Entrada invalida en el menu principal de productos.");
+            System.out.println("\nPor favor, ingrese un número válido.\n");
+            scanner.nextLine(); 
+            continue;
+        }
+
+        System.out.print("\n");
+
+        switch (opcion) {
+            case 1:
+                verTodosLosProductos();
+                break;
+            case 2:
+                agregarNuevoProducto(scanner);
+                break;
+            case 3:
+                actualizarProducto(scanner);
+                break;
+            case 4:
+                eliminarProducto(scanner);
+                break;
+            case 5:
+                buscarProductos(scanner);
+                break;
+            case 6:
+                generarReportes();
+                break;
+            case 7:
+                logger.info("Usuario regresando al inicio");
+                System.out.println("Regresando al inicio...");
+                mostrarMenuInicio(scanner);
+                return;
+            default:
+                logger.warn("Opcion ingresada invalida: {}", opcion);
+                System.out.println("\nPor favor, ingrese un número entre 1 y 7.");
+        }
+    }
+}
 
     private void verTodosLosProductos() {
         logger.info("Solicitando lista de todos los productos.");
@@ -231,14 +305,15 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
         try {
             List<Producto> productos = productoServices.getAllProductos();
             if (productos.isEmpty()) {
-                logger.warn("No hay productos en el inventario.");
+                logger.info("No hay productos en el inventario.");
+                System.out.println("No hay productos en el inventario.");
             } else {
                 System.out.println("Lista de productos en el inventario:\n");
                 productos.forEach(this::imprimirProducto);
                 logger.info("Se listaron {} productos.", productos.size());
             }
         } catch (Exception e) {
-            logger.error("Error al obtener la lista de productos", e);
+            logger.error("Error al obtener la lista de productos");
         }
     }
 
@@ -275,7 +350,7 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
             imprimirProducto(productoGuardado);
 
         } catch (Exception e) {
-            logger.error("Error al agregar un nuevo producto", e);
+            logger.error("Error al agregar un nuevo producto");
             System.out.println("\nPor favor, intente nuevamente.\n");
         }
 
@@ -342,7 +417,7 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
             logger.info("Producto actualizado exitosamente: ID={}", idActualizar);
             imprimirProducto(productoActualizado);
         } catch (Exception e) {
-            logger.error("Error al actualizar el producto", e);
+            logger.error("Error al actualizar el producto");
         }
 
     }
@@ -378,7 +453,7 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
                 System.out.println("\nOperacion de eliminacion cancelada para el producto con ID="+ idEliminar);
             }
         } catch (Exception e) {
-            logger.error("Error al eliminar el producto", e);
+            logger.error("Error al eliminar el producto");
         }
     }
     
@@ -398,11 +473,13 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
                 tipoBusqueda = scanner.nextInt();
                 scanner.nextLine();
                 if (tipoBusqueda < 1 || tipoBusqueda > 3) {
+                    System.out.println("\n");
                     logger.warn("Entrada inválida en búsqueda de productos: {}", tipoBusqueda);
                     System.out.println("\nPor favor ingrese 1, 2 o 3.\n");
                 }
             } catch (InputMismatchException e) {
-                logger.error("Error de entrada en la búsqueda de productos", e);
+                System.out.println("\n");
+                logger.error("Error de entrada en la busqueda de productos");
                 System.out.println("\nPor favor ingrese un número.\n");
                 scanner.next();
             }
@@ -416,7 +493,7 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
         try {
             if (tipoBusqueda == 1) {
                 System.out.print("\nIngrese el nombre del producto: ");
-                String nombreBusqueda = scanner.nextLine();
+                String nombreBusqueda = normalizarTexto(scanner.nextLine());
                 List<Producto> productosPorNombre = productoServices.buscarPorNombre(nombreBusqueda);
                 if (productosPorNombre.isEmpty()) {
                     logger.info("No se encontraron productos con el nombre: {}", nombreBusqueda);
@@ -428,7 +505,7 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
                 }
             } else if (tipoBusqueda == 2) {
                 System.out.print("\nIngrese la categoría: ");
-                String categoriaBusqueda = scanner.nextLine();
+                String categoriaBusqueda = normalizarTexto(scanner.nextLine());
                 List<Producto> productosPorCategoria = productoServices.buscarPorCategoria(categoriaBusqueda);
                 if (productosPorCategoria.isEmpty()) {
                     logger.info("No se encontraron productos en la categoría: {}", categoriaBusqueda);
@@ -440,7 +517,7 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
                 }
             }
         } catch (Exception e) {
-            logger.error("Error durante la búsqueda de productos", e);
+            logger.error("Error durante la búsqueda de productos");
         }
     }
 
@@ -481,7 +558,7 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
 
             logger.info("Reporte de inventario generado con exito.");
         } catch (Exception e) {
-            logger.error("Error al generar reportes de inventario", e);
+            logger.error("Error al generar reportes de inventario");
         }
     }
 

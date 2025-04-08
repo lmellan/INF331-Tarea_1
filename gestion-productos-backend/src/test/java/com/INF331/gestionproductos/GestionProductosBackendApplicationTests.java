@@ -90,10 +90,11 @@ void iniciarSesion_credencialesCorrectas_deberiaRetornarTrue() {
 		ReflectionTestUtils.invokeMethod(app, "registrarse", scanner);
 
 		String salida = outContent.toString();
-		assertTrue(salida.contains("ya está en uso"));
+		assertTrue(salida.contains("Intento de registro fallido: El nombre de usuario 'admin' ya esta en uso."));
+
 	}
 
-		@Test
+	@Test
 	public void registrarse_usuarioNuevo_deberiaCrearUsuario() {
 		String input = "nuevoUsuario\nclaveSegura\n";
 		Scanner scanner = new Scanner(new ByteArrayInputStream(input.getBytes()));
@@ -116,7 +117,7 @@ void iniciarSesion_credencialesCorrectas_deberiaRetornarTrue() {
 		verify(usuarioMock, times(1)).createUsuario(any(Usuario.class));
 
 		String salida = outContent.toString();
-		assertTrue(salida.contains("Usuario registrado con éxito."));
+		assertTrue(salida.contains("Cuenta creada exitosamente!"));
 	}
 
 
@@ -188,8 +189,8 @@ void generarReportes_deberiaMostrarTotalesYAgotados() {
     ReflectionTestUtils.invokeMethod(app, "generarReportes");
 
     String salida = out.toString();
-    assertTrue(salida.contains("Total de productos en inventario: 2"));
-    assertTrue(salida.contains("Valor total del inventario: $2000"));
+    assertTrue(salida.contains("Total de productos del inventario: 2"));
+    assertTrue(salida.contains("Valor total del inventario calculado: $2000"));
     assertTrue(salida.contains("Leche"));
 }
 
@@ -218,7 +219,7 @@ void buscarProductos_categoriaConTildesOMayusculas_deberiaEncontrarCoincidencias
 
     String salida = out.toString().toLowerCase();
 
-    assertTrue(salida.contains("coca cola"), "Debe mostrar el nombre del producto sin importar formato");
+    assertTrue(salida.contains("coca cola"));
 }
 
 
@@ -242,7 +243,7 @@ void buscarProductos_porNombreInexistente_deberiaMostrarMensajeDeNoEncontrado() 
     ReflectionTestUtils.invokeMethod(app, "buscarProductos", scanner);
 
     String salida = out.toString();
-    assertTrue(salida.contains("No se encontraron productos con ese nombre."));
+    assertTrue(salida.contains("No se encontraron productos con el nombre:"));
 }
 
 
