@@ -143,7 +143,8 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
 
             if (usuarioServices.buscarPorNombre(nombre).isPresent()) {
                 System.out.println("\n");
-                logger.warn("Intento de registro fallido: El nombre de usuario '{}' ya esta en uso.", nombre);
+                logger.info("Intento de registro fallido: El nombre de usuario '{}' ya esta en uso.", nombre);
+                System.out.println("Intento de registro fallido: El nombre de usuario '" + nombre + "' ya esta en uso."); 
                 return;
             }
 
@@ -231,14 +232,15 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
         try {
             List<Producto> productos = productoServices.getAllProductos();
             if (productos.isEmpty()) {
-                logger.warn("No hay productos en el inventario.");
+                logger.info("No hay productos en el inventario.");
+                System.out.println("No hay productos en el inventario.");
             } else {
                 System.out.println("Lista de productos en el inventario:\n");
                 productos.forEach(this::imprimirProducto);
                 logger.info("Se listaron {} productos.", productos.size());
             }
         } catch (Exception e) {
-            logger.error("Error al obtener la lista de productos", e);
+            logger.error("Error al obtener la lista de productos");
         }
     }
 
@@ -275,7 +277,7 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
             imprimirProducto(productoGuardado);
 
         } catch (Exception e) {
-            logger.error("Error al agregar un nuevo producto", e);
+            logger.error("Error al agregar un nuevo producto");
             System.out.println("\nPor favor, intente nuevamente.\n");
         }
 
@@ -342,7 +344,7 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
             logger.info("Producto actualizado exitosamente: ID={}", idActualizar);
             imprimirProducto(productoActualizado);
         } catch (Exception e) {
-            logger.error("Error al actualizar el producto", e);
+            logger.error("Error al actualizar el producto");
         }
 
     }
@@ -378,7 +380,7 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
                 System.out.println("\nOperacion de eliminacion cancelada para el producto con ID="+ idEliminar);
             }
         } catch (Exception e) {
-            logger.error("Error al eliminar el producto", e);
+            logger.error("Error al eliminar el producto");
         }
     }
     
@@ -398,11 +400,13 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
                 tipoBusqueda = scanner.nextInt();
                 scanner.nextLine();
                 if (tipoBusqueda < 1 || tipoBusqueda > 3) {
+                    System.out.println("\n");
                     logger.warn("Entrada inválida en búsqueda de productos: {}", tipoBusqueda);
                     System.out.println("\nPor favor ingrese 1, 2 o 3.\n");
                 }
             } catch (InputMismatchException e) {
-                logger.error("Error de entrada en la búsqueda de productos", e);
+                System.out.println("\n");
+                logger.error("Error de entrada en la busqueda de productos");
                 System.out.println("\nPor favor ingrese un número.\n");
                 scanner.next();
             }
@@ -416,7 +420,7 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
         try {
             if (tipoBusqueda == 1) {
                 System.out.print("\nIngrese el nombre del producto: ");
-                String nombreBusqueda = scanner.nextLine();
+                String nombreBusqueda = normalizarTexto(scanner.nextLine());
                 List<Producto> productosPorNombre = productoServices.buscarPorNombre(nombreBusqueda);
                 if (productosPorNombre.isEmpty()) {
                     logger.info("No se encontraron productos con el nombre: {}", nombreBusqueda);
@@ -428,7 +432,7 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
                 }
             } else if (tipoBusqueda == 2) {
                 System.out.print("\nIngrese la categoría: ");
-                String categoriaBusqueda = scanner.nextLine();
+                String categoriaBusqueda = normalizarTexto(scanner.nextLine());
                 List<Producto> productosPorCategoria = productoServices.buscarPorCategoria(categoriaBusqueda);
                 if (productosPorCategoria.isEmpty()) {
                     logger.info("No se encontraron productos en la categoría: {}", categoriaBusqueda);
@@ -440,7 +444,7 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
                 }
             }
         } catch (Exception e) {
-            logger.error("Error durante la búsqueda de productos", e);
+            logger.error("Error durante la búsqueda de productos");
         }
     }
 
@@ -481,7 +485,7 @@ public class GestionProductosBackendApplication implements CommandLineRunner {
 
             logger.info("Reporte de inventario generado con exito.");
         } catch (Exception e) {
-            logger.error("Error al generar reportes de inventario", e);
+            logger.error("Error al generar reportes de inventario");
         }
     }
 
