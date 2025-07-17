@@ -1,4 +1,4 @@
-# Tarea_1-INF331
+# Gestión de Inventario
 
 ## Descripción
 
