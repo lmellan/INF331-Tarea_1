@@ -2,7 +2,7 @@
 
 ## Descripción
 
-Este proyecto es una aplicación de software desarrollada por un equipo de 2 personas. El objetivo es crear una aplicación para gestionar el inventario de productos en un negocio. El código fuente está disponible bajo la **MIT License**, lo que permite su uso, modificación y distribución de manera abierta.
+Este proyecto corresponde a la Tarea 1 del curso INF331. Se trata de una  aplicación de software desarrollada por un equipo de 2 personas. El objetivo es crear una aplicación para gestionar el inventario de productos en un negocio.
 
 ## Wiki
 
